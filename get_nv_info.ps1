@@ -1,0 +1,2 @@
+$gpu = Get-CimInstance Win32_PnPSignedDriver | Where-Object { $_.DeviceClass -eq 'DISPLAY' -and $_.DriverProviderName -match 'NVIDIA' } | Select-Object -First 1
+if ($gpu) { Write-Output ("Device={0}; DriverVersion={1}" -f $gpu.DeviceName,$gpu.DriverVersion) } else { Write-Output 'No NVIDIA display driver detected.' }
